@@ -69,7 +69,7 @@ if [ ! -d "$DOTFILES_DIR" ]; then
   git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
 elif git -C "$DOTFILES_DIR" rev-parse --is-inside-work-tree &>/dev/null; then
   echo ":: dotfiles already present, pulling latest..."
-  git -C "$DOTFILES_DIR" pull
+  git -C "$DOTFILES_DIR" pull --ff-only
 else
   echo ":: $DOTFILES_DIR exists but is not a git repo — skipping pull"
 fi
