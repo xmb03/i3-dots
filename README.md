@@ -88,7 +88,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/xmb03/i3-dots/main/bootstrap
 Or manually:
 
 ```bash
-git clone git@github.com:xmb03/i3-dots.git ~/.config/dotfiles
+git clone https://github.com/xmb03/i3-dots.git ~/.config/dotfiles
 # symlink or copy configs as needed
 # set wallpaper with $mod+a or run ~/.fehbg
 ```
