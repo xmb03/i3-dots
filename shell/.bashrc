@@ -10,15 +10,10 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 # uv
-export PATH="/home/xmb03/.local/bin:$PATH"
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/home/xmb03/.lmstudio/bin"
-# End of LM Studio CLI section
-
+export PATH="$HOME/.local/bin:$PATH"
 
 # opencode
-export PATH=/home/xmb03/.opencode/bin:$PATH
+export PATH="$HOME/.opencode/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

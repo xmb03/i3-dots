@@ -1,1 +1,5 @@
-
+file://${HOME}/Pictures
+file://${HOME}/Documents
+file://${HOME}/apps
+file://${HOME}/Projects
+file:///mnt/windows

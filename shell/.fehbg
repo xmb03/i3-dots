@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-fill '/home/xmb03/Pictures/Wallpapers/gruvbox_image55.png' 
+feh --no-fehbg --bg-fill "$HOME/Pictures/Wallpapers/gruvbox_image55.png"
