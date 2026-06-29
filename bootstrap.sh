@@ -2,10 +2,11 @@
 set -euo pipefail
 
 # dotfiles bootstrap — installs everything needed for xmb03/i3-dots
-# Usage: curl -fsSL https://raw.githubusercontent.com/xmb03/i3-dots/main/bootstrap.sh | bash
+# Usage: bash <(curl -fsSL https://raw.githubusercontent.com/xmb03/i3-dots/main/bootstrap.sh)
 
-DOTFILES_REPO="git@github.com:xmb03/i3-dots.git"
+DOTFILES_REPO="https://github.com/xmb03/i3-dots.git"
 DOTFILES_DIR="$HOME/.config/dotfiles"
+BACKUP_DIR="$HOME/.config/dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
 
 echo ":: bootstrap — xmb03/i3-dots"
 
@@ -23,14 +24,20 @@ install_arch() {
   )
   local aur_pkgs=(greenclip)
 
-  if ! command -v yay &>/dev/null && ! command -v paru &>/dev/null; then
+  # detect existing AUR helper, install yay if none found
+  local aur=""
+  if command -v paru &>/dev/null; then
+    aur=paru
+  elif command -v yay &>/dev/null; then
+    aur=yay
+  else
     echo ":: Installing yay (AUR helper)..."
     sudo pacman -S --needed --noconfirm base-devel git
     git clone https://aur.archlinux.org/yay.git /tmp/yay
     (cd /tmp/yay && makepkg -si --noconfirm)
     rm -rf /tmp/yay
+    aur=yay
   fi
-  local aur="${AUR_HELPER:-yay}"
 
   echo ":: Installing packages..."
   sudo pacman -S --needed --noconfirm "${pkgs[@]}"
@@ -54,37 +61,47 @@ case "$(uname -o 2>/dev/null || uname -s)" in
     ;;
 esac
 
-# ── 2. Clone dotfiles ────────────────────────────────────────────────────
+# ── 2. Clone / update dotfiles ───────────────────────────────────────────
 
 if [ ! -d "$DOTFILES_DIR" ]; then
   echo ":: Cloning dotfiles..."
   git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
-else
+elif git -C "$DOTFILES_DIR" rev-parse --is-inside-work-tree &>/dev/null; then
   echo ":: dotfiles already present, pulling latest..."
   git -C "$DOTFILES_DIR" pull
+else
+  echo ":: $DOTFILES_DIR exists but is not a git repo — skipping pull"
 fi
 
 # ── 3. Symlink configs ───────────────────────────────────────────────────
 
-echo ":: Symlinking configs..."
-mkdir -p "$HOME/.config"
-for dir in i3 kitty nvim rofi zathura gtk-3.0 gtk-4.0 fontconfig redshift wal; do
-  src="$DOTFILES_DIR/$dir"
-  dst="$HOME/.config/$dir"
-  if [ -e "$dst" ] && [ ! -L "$dst" ]; then
-    mv "$dst" "${dst}.bak"
+link_file() {
+  local src="$1" dst="$2"
+  mkdir -p "$(dirname "$dst")"
+
+  if [ -L "$dst" ]; then
+    # already a symlink — check if it points to the right place
+    if [ "$(readlink "$dst")" = "$src" ]; then
+      return
+    fi
+    rm "$dst"
+  elif [ -e "$dst" ]; then
+    echo "    backing up $dst → $BACKUP_DIR/"
+    mkdir -p "$BACKUP_DIR/$(dirname "$dst")"
+    mv "$dst" "$BACKUP_DIR/$dst"
   fi
-  ln -sfn "$src" "$dst"
+
+  ln -sf "$src" "$dst"
+  echo "    linked $dst → $src"
+}
+
+echo ":: Symlinking configs..."
+for dir in i3 kitty nvim rofi zathura gtk-3.0 gtk-4.0 fontconfig redshift wal dconf; do
+  link_file "$DOTFILES_DIR/$dir" "$HOME/.config/$dir"
 done
 
-# shell configs
-for f in .zshrc .bashrc .bash_profile .xprofile .fehbg .Xresources; do
-  src="$DOTFILES_DIR/shell/$f"
-  dst="$HOME/$f"
-  if [ -e "$dst" ] && [ ! -L "$dst" ]; then
-    mv "$dst" "${dst}.bak"
-  fi
-  ln -sf "$src" "$dst"
+for f in .zshrc .bashrc .bash_profile .xprofile .fehbg .Xresources config.fish; do
+  link_file "$DOTFILES_DIR/shell/$f" "$HOME/$f"
 done
 
 # ── 4. Setup wallpaper & pywal ───────────────────────────────────────────
