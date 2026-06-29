@@ -16,4 +16,5 @@ Modular i3wm config split into `user/` and `system/` layers.
 | `system/autostart.conf` | dex, nm-applet |
 | `system/binds.conf` | Volume, focus, resize, layout, workspace keys |
 | `scripts/rofi-wallpaper` | Wallpaper picker (rofi grid → pywal → feh) |
-| `i3status-rs/config.toml` | Status bar blocks: keyboard layout, volume, backlight, time |
+| `scripts/powermenu.sh` | Power menu with Nerd Font icons (Lock, Logout, Suspend, Hibernate, Reboot, Shutdown) |
+| `i3status-rs/config.toml` | Status bar blocks: keyboard layout, volume, backlight, time, power-off button |
