@@ -77,6 +77,12 @@ fi
 
 link_file() {
   local src="$1" dst="$2"
+
+  if [ ! -e "$src" ]; then
+    echo "    skipping $src — does not exist"
+    return
+  fi
+
   mkdir -p "$(dirname "$dst")"
 
   if [ -L "$dst" ]; then
