@@ -9,6 +9,7 @@ DOTFILES_DIR="$HOME/.config/dotfiles"
 BACKUP_DIR="$HOME/.config/dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
 
 echo ":: bootstrap — xmb03/i3-dots"
+mkdir -p "$BACKUP_DIR"
 
 # ── 1. Install packages ──────────────────────────────────────────────────
 
@@ -87,7 +88,7 @@ link_file() {
 
   if [ -L "$dst" ]; then
     # already a symlink — check if it points to the right place
-    if [ "$(readlink -f "$dst")" = "$(readlink -f "$src")" ]; then
+    if [ "$(realpath "$dst")" = "$(realpath "$src")" ]; then
       return
     fi
     rm "$dst"
