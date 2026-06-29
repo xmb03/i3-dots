@@ -83,9 +83,13 @@ The entire desktop is themed by **pywal** — run the wallpaper picker (`$mod+a`
 | udiskie | USB auto-mount |
 | i3lock | Lock screen |
 
-## Setup
+## Quick Start
 
-Dependencies: `i3-wm`, `rofi`, `kitty`, `neovim`, `pywal`, `feh`, `i3status-rust`, `dunst`, `flameshot`, `greenclip`, `zsh` (with autosuggestions + syntax-highlighting), `JetBrainsMono Nerd Font`.
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/xmb03/i3-dots/main/bootstrap.sh)
+```
+
+Or manually:
 
 ```bash
 git clone git@github.com:xmb03/i3-dots.git ~/.config/dotfiles
