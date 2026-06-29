@@ -1,6 +1,6 @@
 # Dotfiles — xmb03
 
-Personal dotfiles for **i3wm** with **pywal**-driven colorscheming, originally on Arch Linux and migrating to NixOS/home-manager/stylix.
+Personal i3wm dotfiles with pywal-driven colorscheming.
 
 ## Features
 
@@ -85,16 +85,13 @@ The entire desktop is themed by **pywal** — run the wallpaper picker (`$mod+a`
 
 ## Setup
 
-### Arch Linux (current)
+Dependencies: `i3-wm`, `rofi`, `kitty`, `neovim`, `pywal`, `feh`, `i3status-rust`, `dunst`, `flameshot`, `greenclip`, `zsh` (with autosuggestions + syntax-highlighting), `JetBrainsMono Nerd Font`.
 
-Dependencies are listed in the old README — mostly `i3-wm`, `rofi`, `kitty`, `neovim`, `pywal`, `feh`, `i3status-rust`, `dunst`, `flameshot`, `greenclip`, `zsh` with plugins, and `JetBrainsMono Nerd Font`.
-
-1. Clone into `~/.config/`
-2. Set wallpaper via `$mod+a` or run `~/.fehbg` on login
-
-### NixOS (target)
-
-Migration in progress — see `NIXOS-PROMT.md` for the full migration plan. The goal is to replace pywal with **stylix** (`base16Scheme = "gruvbox-dark-hard"`) and rewrite all configs as Nix/home-manager modules.
+```bash
+git clone git@github.com:xmb03/i3-dots.git ~/.config/dotfiles
+# symlink or copy configs as needed
+# set wallpaper with $mod+a or run ~/.fehbg
+```
 
 ## Hardware
 
