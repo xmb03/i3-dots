@@ -53,17 +53,6 @@ Modular i3 configuration with pywal colors, custom scripts, and i3status-rust ba
 | `wal-telegram` | Telegram theme from pywal |
 | `pw-mon` / `wpctl` (pipewire) | Mic monitoring script |
 
-## Install
-
-```bash
-# Clone into ~/.config/i3
-git clone <repo-url> ~/.config/i3
-
-# Ensure Xresources is loaded on login
-echo 'xrdb -merge ~/.Xresources' >> ~/.xinitrc
-
-# Restart i3: $mod+Shift+r
-```
 
 ## Keybindings (user)
 
@@ -77,14 +66,3 @@ echo 'xrdb -merge ~/.Xresources' >> ~/.xinitrc
 | `$mod+a` | Wallpaper picker |
 | `$mod+w` | Firefox |
 
-## Home Manager / NixOS migration
-
-This config is structured to map cleanly to `programs.i3` / `home-manager` modules:
-
-- `user/` → `i3.config` or `extraConfig`
-- `system/` → distribution-level config
-- `scripts/` → `home.file."scripts/..."` or `pkgs.writeShellScript`
-- `i3status-rs/config.toml` → `programs.i3status-rust`
-- Dependencies → `home.packages = [ ... ]`
-- Xresources colors → `xresources.properties."i3wm.colorN"`
-- Autostart services → `systemd.user.services.*`
