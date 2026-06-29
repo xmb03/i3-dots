@@ -2,6 +2,11 @@
 
 Personal i3wm dotfiles with pywal-driven colorscheming.
 
+<p align="center">
+  <img src="pictures/desktop.png" alt="Desktop" width="49%">
+  <img src="pictures/neovim.png" alt="Neovim" width="49%">
+</p>
+
 ## Features
 
 - **i3** — modular config split into `user/` (personal) and `system/` (distribution-agnostic)
