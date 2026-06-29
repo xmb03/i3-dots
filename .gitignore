@@ -11,6 +11,9 @@ nvim/README.md
 *.swo
 *~
 
+# shell configs (user-specific)
+shell/config.fish
+
 # OS
 .DS_Store
 Thumbs.db

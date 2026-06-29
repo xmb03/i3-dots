@@ -108,7 +108,7 @@ for dir in i3 kitty nvim rofi zathura gtk-3.0 gtk-4.0 fontconfig redshift wal dc
   link_file "$DOTFILES_DIR/$dir" "$HOME/.config/$dir"
 done
 
-for f in .zshrc .bashrc .bash_profile .xprofile .fehbg .Xresources config.fish; do
+for f in .zshrc .bashrc .bash_profile .xprofile .fehbg .Xresources; do
   link_file "$DOTFILES_DIR/shell/$f" "$HOME/$f"
 done
 

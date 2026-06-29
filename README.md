@@ -36,7 +36,7 @@ dotfiles/
 ├── gtk-3.0/                     # GTK3 settings + dark theme
 ├── gtk-4.0/                     # GTK4 settings + dark theme
 ├── fontconfig/                  # font aliases → JetBrainsMono Nerd Font
-├── shell/                       # zsh, bash, fish, Xresources, xprofile
+├── shell/                       # zsh, bash, Xresources, xprofile
 ├── redshift/                    # blue light filter
 ├── wal/                         # pywal template for zathura
 ├── dconf/                       # gsettings dump
