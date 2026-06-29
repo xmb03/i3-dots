@@ -4,7 +4,6 @@ SKILL.md
 
 # nvim distribution files (local only)
 nvim/LICENSE
-nvim/README.md
 
 # Editor temp files
 *.swp
