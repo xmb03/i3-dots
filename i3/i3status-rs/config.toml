@@ -4,11 +4,13 @@ theme = "native"
 [icons]
 icons = "awesome4"
 
-# keyboard layout (click to toggle via xdotool)
+[icons.overrides]
+power-off = "\uf011"
+
 [[block]]
 block = "keyboard_layout"
 driver = "xkbevent"
-format = " ⌨  $layout " 
+format = " ⌨  $layout "
 
 [block.mappings]
 "English (US)" = "EN"
@@ -19,21 +21,27 @@ button = "left"
 cmd = "xdotool key alt+shift"
 update = true
 
-# backlight brightness
 [[block]]
 block = "backlight"
 format = " $icon $brightness "
 
-# sound volume (pipewire)
 [[block]]
 block = "sound"
 format = " $icon { $volume|} "
 show_volume_when_muted = true
 driver = "pipewire"
 
-# clock
 [[block]]
 block = "time"
 interval = 5
 format = " $icon $timestamp.datetime(f:'%R') "
 
+[[block]]
+block = "custom"
+command = "echo '{\"icon\":\"power-off\",\"text\":\"\"}'"
+json = true
+interval = 86400
+format = " $icon "
+[[block.click]]
+button = "left"
+cmd = "~/.config/i3/scripts/powermenu.sh"
