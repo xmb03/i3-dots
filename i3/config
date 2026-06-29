@@ -1,0 +1,24 @@
+# i3 config file (v4)
+
+set $mod Mod4
+
+# font for window titles + bar
+font pango:monospace 8
+
+# ====== SETTINGS ======
+include ~/.config/i3/user/settings.conf
+include ~/.config/i3/system/settings.conf
+
+# ====== AUTOSTART ======
+include ~/.config/i3/user/autostart.conf
+include ~/.config/i3/system/autostart.conf
+
+# ====== BINDS ======
+include ~/.config/i3/system/binds.conf
+include ~/.config/i3/user/binds.conf
+
+# ====== MONITOR ======
+include ~/.config/i3/user/monitor.conf
+
+# ====== BAR ======
+include ~/.config/i3/user/bar.conf

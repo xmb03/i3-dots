@@ -1,0 +1,11 @@
+# Editor temp files
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache / auto-generated (if symlinked into repo)
+.cache/

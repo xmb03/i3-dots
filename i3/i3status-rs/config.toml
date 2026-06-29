@@ -1,0 +1,39 @@
+[theme]
+theme = "native"
+
+[icons]
+icons = "awesome4"
+
+# keyboard layout (click to toggle via xdotool)
+[[block]]
+block = "keyboard_layout"
+driver = "xkbevent"
+format = " ⌨  $layout " 
+
+[block.mappings]
+"English (US)" = "EN"
+"Russian (N/A)" = "RU"
+
+[[block.click]]
+button = "left"
+cmd = "xdotool key alt+shift"
+update = true
+
+# backlight brightness
+[[block]]
+block = "backlight"
+format = " $icon $brightness "
+
+# sound volume (pipewire)
+[[block]]
+block = "sound"
+format = " $icon { $volume|} "
+show_volume_when_muted = true
+driver = "pipewire"
+
+# clock
+[[block]]
+block = "time"
+interval = 5
+format = " $icon $timestamp.datetime(f:'%R') "
+
