@@ -87,14 +87,15 @@ link_file() {
 
   if [ -L "$dst" ]; then
     # already a symlink — check if it points to the right place
-    if [ "$(readlink "$dst")" = "$src" ]; then
+    if [ "$(readlink -f "$dst")" = "$(readlink -f "$src")" ]; then
       return
     fi
     rm "$dst"
   elif [ -e "$dst" ]; then
     echo "    backing up $dst → $BACKUP_DIR/"
-    mkdir -p "$BACKUP_DIR/$(dirname "$dst")"
-    mv "$dst" "$BACKUP_DIR/$dst"
+    local rel="${dst#$HOME/}"
+    mkdir -p "$BACKUP_DIR/$(dirname "$rel")"
+    mv "$dst" "$BACKUP_DIR/$rel"
   fi
 
   ln -sf "$src" "$dst"
@@ -118,7 +119,23 @@ if [ ! -d "$WALLPAPER_DIR" ]; then
   mkdir -p "$WALLPAPER_DIR"
 fi
 
-# ── 5. Done ──────────────────────────────────────────────────────────────
+# ── 5. Verify critical commands ──────────────────────────────────────────
+
+echo ":: Checking critical commands..."
+missing=0
+for cmd in i3 kitty nvim rofi feh dunst flameshot zsh bat btop; do
+  if ! command -v "$cmd" &>/dev/null; then
+    echo "    MISSING: $cmd"
+    missing=$((missing + 1))
+  fi
+done
+if [ "$missing" -gt 0 ]; then
+  echo "  ⚠ $missing command(s) not found — check package installation"
+else
+  echo "    all critical commands available"
+fi
+
+# ── 6. Done ──────────────────────────────────────────────────────────────
 
 echo ""
 echo "  ✓ Bootstrap complete!"
