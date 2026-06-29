@@ -18,29 +18,20 @@ Personal i3wm dotfiles with pywal-driven colorscheming.
 
 ## Structure
 
-```
-dotfiles/
-├── i3/                          # i3wm config
-│   ├── config                   # entry point (modular includes)
-│   ├── user/                    # personal: autostart, binds, bar, monitor, settings
-│   ├── system/                  # system defaults: autostart, binds, settings
-│   ├── scripts/rofi-wallpaper   # wallpaper picker (rofi grid -> pywal -> feh)
-│   └── i3status-rs/config.toml  # status bar
-├── kitty/                       # terminal emulator
-├── nvim/                        # Neovim (LazyVim + neopywal)
-│   ├── init.lua
-│   ├── lua/config/              # lazy.lua, options, keymaps, autocmds
-│   └── lua/plugins/             # pywal.lua, example.lua
-├── rofi/                        # app launcher (@import wal theme)
-├── zathura/                     # PDF viewer
-├── gtk-3.0/                     # GTK3 settings + dark theme
-├── gtk-4.0/                     # GTK4 settings + dark theme
-├── fontconfig/                  # font aliases → JetBrainsMono Nerd Font
-├── shell/                       # zsh, bash, Xresources, xprofile
-├── redshift/                    # blue light filter
-├── wal/                         # pywal template for zathura
-├── dconf/                       # gsettings dump
-```
+| Directory | Description |
+|---|---|
+| [`i3/`](i3/README.md) | i3wm modular config (user/ + system/ layers) |
+| [`kitty/`](kitty/README.md) | Terminal emulator |
+| [`nvim/`](nvim/README.md) | Neovim (LazyVim + neopywal) |
+| [`rofi/`](rofi/README.md) | App launcher / clipboard / window switcher |
+| [`zathura/`](zathura/README.md) | PDF viewer |
+| [`gtk-3.0/`](gtk-3.0/README.md) | GTK3 settings + dark theme |
+| [`gtk-4.0/`](gtk-4.0/README.md) | GTK4 settings + dark theme |
+| [`fontconfig/`](fontconfig/README.md) | Font aliases → JetBrainsMono Nerd Font |
+| [`shell/`](shell/README.md) | Zsh, Bash, Xresources, xprofile |
+| [`redshift/`](redshift/README.md) | Blue light filter |
+| [`wal/`](wal/README.md) | pywal template for zathura |
+| [`dconf/`](dconf/README.md) | GSettings dump |
 
 ## Keybindings
 
