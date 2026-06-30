@@ -121,6 +121,13 @@ mkdir -p "$HOME/.config/zathura"
 ln -sf "$HOME/.cache/wal/colors-zathurarc" "$HOME/.config/zathura/colors"
 echo "    linked $HOME/.config/zathura/colors → $HOME/.cache/wal/colors-zathurarc"
 
+# ── 3c. Install Xorg touchpad config ──────────────────────────────────────
+# Settings in /etc/X11/xorg.conf.d/ survive device reconnects (unlike xinput).
+echo ":: Installing Xorg touchpad config..."
+sudo mkdir -p /etc/X11/xorg.conf.d
+sudo tee /etc/X11/xorg.conf.d/30-touchpad.conf > /dev/null < "$DOTFILES_DIR/xorg-conf.d/30-touchpad.conf"
+echo "    installed /etc/X11/xorg.conf.d/30-touchpad.conf"
+
 # ── 4. Setup wallpaper & pywal ───────────────────────────────────────────
 
 WALLPAPER_DIR="$HOME/Pictures/Wallpapers"

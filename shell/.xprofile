@@ -1,7 +1,11 @@
-# Небольшая задержка, чтобы система успела распознать устройство
-sleep 2
-
-# Применяем настройки к тачпаду по его имени
-xinput set-prop "FTCS1000:01 2808:0222 Touchpad" "libinput Natural Scrolling Enabled" 1
-xinput set-prop "FTCS1000:01 2808:0222 Touchpad" "libinput Accel Profile Enabled" 0 1
-xinput set-prop "FTCS1000:01 2808:0222 Touchpad" "libinput Accel Speed" -0.39
+# Ждём появления тачпада (до 5 секунд), затем применяем настройки
+for i in 1 2 3 4 5; do
+  if xinput list --name-only 2>/dev/null | grep -qx "FTCS1000:01 2808:0222 Touchpad"; then
+    xinput set-prop "FTCS1000:01 2808:0222 Touchpad" "libinput Natural Scrolling Enabled" 1
+    xinput set-prop "FTCS1000:01 2808:0222 Touchpad" "libinput Tapping Enabled" 1
+    xinput set-prop "FTCS1000:01 2808:0222 Touchpad" "libinput Accel Profile Enabled" 0 1
+    xinput set-prop "FTCS1000:01 2808:0222 Touchpad" "libinput Accel Speed" -0.39
+    break
+  fi
+  sleep 1
+done
