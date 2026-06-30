@@ -112,6 +112,15 @@ for f in .zshrc .bashrc .bash_profile .xprofile .fehbg .Xresources; do
   link_file "$DOTFILES_DIR/shell/$f" "$HOME/$f"
 done
 
+# ── 3b. Symlink pywal template outputs into app configs ──────────────────
+# pywal generates files in ~/.cache/wal/ from templates in wal/templates/.
+# These symlinks let apps `include` the generated colors without hardcoding.
+
+echo ":: Symlinking wal template outputs..."
+mkdir -p "$HOME/.config/zathura"
+ln -sf "$HOME/.cache/wal/colors-zathurarc" "$HOME/.config/zathura/colors"
+echo "    linked $HOME/.config/zathura/colors → $HOME/.cache/wal/colors-zathurarc"
+
 # ── 4. Setup wallpaper & pywal ───────────────────────────────────────────
 
 WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
