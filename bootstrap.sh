@@ -154,9 +154,6 @@ case "$install_firefox" in
     echo ":: Configuring Pywalfox native messaging..."
     pywalfox install
 
-    echo ":: Adding Pywalfox to i3 autostart..."
-    echo 'exec_always --no-startup-id pywalfox start &' >> "$DOTFILES_DIR/i3/user/autostart.conf"
-
     echo ":: Cloning Textfox..."
     git clone https://github.com/adriankarlen/textfox.git /tmp/textfox
 
@@ -181,7 +178,7 @@ esac
 
 echo ":: Checking critical commands..."
 missing=0
-for cmd in i3 kitty nvim rofi feh dunst flameshot zsh bat btop greenclip firefox pywalfox; do
+for cmd in i3 kitty nvim rofi feh dunst flameshot zsh bat btop greenclip firefox; do
   if ! command -v "$cmd" &>/dev/null; then
     echo "    MISSING: $cmd"
     missing=$((missing + 1))
