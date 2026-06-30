@@ -1,5 +1,11 @@
 # wal
 
-[pywal](https://github.com/dylanaraps/pywal) template for zathura.
+[pywal](https://github.com/dylanaraps/pywal) templates for desktop theming.
 
-Used by `wal -i` to generate `~/.cache/wal/colors-zathurarc` with the `{background}`, `{foreground}`, `{color0}`–`{color7}` placeholders.
+## Templates
+
+| Template | Generates | Consumed by |
+|---|---|---|
+| `templates/zathurarc` | `~/.cache/wal/colors-zathurarc` | zathura (via include + symlink) |
+
+The bootstrap script creates a symlink `~/.config/zathura/colors` → `~/.cache/wal/colors-zathurarc`, so zathura can `include "colors"` and stay in sync with the current wallpaper.

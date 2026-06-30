@@ -1,7 +1,10 @@
 # zathura
 
-PDF viewer config with pywal-generated dark theme.
+PDF viewer with pywal-driven dark theming.
 
-- `zathurarc` — hardcoded hex colors from pywal (background `#1b2125`, foreground `#d5d1ca`)
+- `zathurarc` — includes `~/.cache/wal/colors-zathurarc` via `include "colors"`
+- Symlink `~/.config/zathura/colors` → `~/.cache/wal/colors-zathurarc` created by bootstrap
 - Recolor enabled for dark-mode PDF viewing
-- Template in `../wal/templates/zathurarc` for regeneration
+- Colors are updated on every `wal -i` run
+
+The pywal template is at `../wal/templates/zathurarc`.
