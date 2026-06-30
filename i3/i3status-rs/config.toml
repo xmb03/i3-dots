@@ -34,12 +34,12 @@ driver = "pipewire"
 [[block]]
 block = "net"
 interval = 5
-format = " $icon $speed_down.eng(prefix:K)↓ $speed_up.eng(prefix:K)↑ "
-format_alt = " $device $ssid "
-inactive_format = " $icon down "
-missing_format = " × "
+format = " $icon "
+format_alt = " $icon $speed_down.eng(prefix:K)↓ $speed_up.eng(prefix:K)↑ "
+inactive_format = " $icon ✗ "
+missing_format = " ✗ "
 [[block.click]]
-button = "middle"
+button = "right"
 cmd = "i3-sensible-terminal -e nmtui"
 update = false
 
