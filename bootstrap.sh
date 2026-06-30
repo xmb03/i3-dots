@@ -19,7 +19,7 @@ install_arch() {
     zsh zsh-autosuggestions zsh-syntax-highlighting firefox
     xorg-xrandr xorg-xset xorg-xrdb xdotool xclip xss-lock i3lock
     redshift udiskie dex networkmanager network-manager-applet
-    pipewire-pulse pulsemixer playerctl
+    pipewire-pulse pulsemixer playerctl mpv-mpris
     bat btop mpv fastfetch picom
     ttf-jetbrains-mono-nerd
   )
