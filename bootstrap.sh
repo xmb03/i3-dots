@@ -16,7 +16,7 @@ mkdir -p "$BACKUP_DIR"
 install_arch() {
   local pkgs=(
     i3-wm rofi kitty neovim python-pywal feh i3status-rust dunst flameshot
-    zsh zsh-autosuggestions zsh-syntax-highlighting firefox
+    zsh zsh-autosuggestions zsh-syntax-highlighting
     xorg-xrandr xorg-xset xorg-xrdb xdotool xclip xss-lock i3lock
     redshift udiskie dex networkmanager network-manager-applet
     pipewire-pulse pulsemixer playerctl mpv-mpris
@@ -139,11 +139,49 @@ if [ ! -d "$WALLPAPER_DIR" ]; then
   mkdir -p "$WALLPAPER_DIR"
 fi
 
+# ── 4b. Firefox + Textfox + Pywalfox (optional) ──────────────────────────
+
+read -rp ":: Install Firefox with Textfox theme + Pywalfox? (y/N): " install_firefox
+
+case "$install_firefox" in
+  [Yy]*)
+    echo ":: Installing Firefox..."
+    sudo pacman -S --needed --noconfirm firefox
+
+    echo ":: Installing Pywalfox (AUR)..."
+    "$aur" -S --needed --noconfirm python-pywalfox
+
+    echo ":: Configuring Pywalfox native messaging..."
+    pywalfox install
+
+    echo ":: Adding Pywalfox to i3 autostart..."
+    echo 'exec_always --no-startup-id pywalfox start &' >> "$DOTFILES_DIR/i3/user/autostart.conf"
+
+    echo ":: Cloning Textfox..."
+    git clone https://github.com/adriankarlen/textfox.git /tmp/textfox
+
+    echo ":: Running Textfox installer..."
+    PROFILE_PATH=$(ls -d "$HOME/.mozilla/firefox/"*.default-release 2>/dev/null | head -1)
+    if [ -n "$PROFILE_PATH" ]; then
+      bash /tmp/textfox/tf-install.sh "$PROFILE_PATH"
+    else
+      echo ":: Firefox profile not found — run Firefox once first, then re-run:"
+      echo "   bash /tmp/textfox/tf-install.sh"
+    fi
+
+    echo ":: Cleaning up..."
+    rm -rf /tmp/textfox
+    ;;
+  *)
+    echo ":: Skipping Firefox & Textfox"
+    ;;
+esac
+
 # ── 5. Verify critical commands ──────────────────────────────────────────
 
 echo ":: Checking critical commands..."
 missing=0
-for cmd in i3 kitty nvim rofi feh dunst flameshot zsh bat btop greenclip; do
+for cmd in i3 kitty nvim rofi feh dunst flameshot zsh bat btop greenclip firefox pywalfox; do
   if ! command -v "$cmd" &>/dev/null; then
     echo "    MISSING: $cmd"
     missing=$((missing + 1))
@@ -165,4 +203,6 @@ echo "    1. Add wallpapers to ~/Pictures/Wallpapers/"
 echo "    2. Run \$mod+a (or ~/.fehbg) to set a wallpaper"
 echo "    3. Restart i3: \$mod+Shift+r"
 echo "    4. Set zsh as default: chsh -s /usr/bin/zsh"
+echo "    5. Install Pywalfox addon in Firefox: https://addons.mozilla.org/firefox/addon/pywalfox"
+echo "    6. Open Firefox → click Pywalfox icon → \"Fetch Pywal colors\""
 echo ""
