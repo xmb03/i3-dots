@@ -22,9 +22,10 @@ Modular i3wm config split into `user/` and `system/` layers.
 ## i3status-rust bar
 
 | Block | Default | Left-click | Right-click |
-|---|---|---|---|
+|---|---|---|---|---|
 | ⌨ keyboard layout | Layout name (EN/RU) | Toggle layout | — |
 | 🌓 backlight | Brightness % | — | — |
+|  music | Current song (max 25 chars) + controls | — | — |
 | 🔊 sound | Volume % | — | — |
 | 🌐 net | `` (connected) / ` ✗` (down) | Toggle speed view | nmtui |
 | 🕐 time | HH:MM | — | — |
