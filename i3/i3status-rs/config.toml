@@ -8,10 +8,6 @@ icons = "awesome4"
 power-off = "\uf011"
 
 [[block]]
-block = "music"
-format = " $icon {$combo.str(max_w:25) $prev $play $next |}"
-
-[[block]]
 block = "keyboard_layout"
 driver = "xkbevent"
 format = " ⌨  $layout "
@@ -28,6 +24,10 @@ update = true
 [[block]]
 block = "backlight"
 format = " $icon $brightness "
+
+[[block]]
+block = "music"
+format = " $icon {$combo.str(max_w:25) $prev $play $next |}"
 
 [[block]]
 block = "sound"
