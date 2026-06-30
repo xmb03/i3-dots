@@ -28,6 +28,7 @@ format = " $icon $brightness "
 [[block]]
 block = "music"
 format = " $icon {$combo.str(max_w:25) $prev $play $next |}"
+hide_when_empty = true
 
 [[block]]
 block = "sound"
