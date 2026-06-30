@@ -32,6 +32,18 @@ show_volume_when_muted = true
 driver = "pipewire"
 
 [[block]]
+block = "net"
+interval = 5
+format = " $icon $speed_down.eng(prefix:K)↓ $speed_up.eng(prefix:K)↑ "
+format_alt = " $device $ssid "
+inactive_format = " $icon down "
+missing_format = " × "
+[[block.click]]
+button = "middle"
+cmd = "i3-sensible-terminal -e nmtui"
+update = false
+
+[[block]]
 block = "time"
 interval = 5
 format = " $icon $timestamp.datetime(f:'%R') "
