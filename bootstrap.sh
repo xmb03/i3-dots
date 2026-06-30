@@ -43,6 +43,9 @@ install_arch() {
   echo ":: Installing packages..."
   sudo pacman -S --needed --noconfirm "${pkgs[@]}"
   "$aur" -S --needed --noconfirm "${aur_pkgs[@]}"
+
+  echo ":: Enabling greenclip daemon..."
+  systemctl --user enable --now greenclip
 }
 
 case "$(uname -o 2>/dev/null || uname -s)" in
@@ -140,7 +143,7 @@ fi
 
 echo ":: Checking critical commands..."
 missing=0
-for cmd in i3 kitty nvim rofi feh dunst flameshot zsh bat btop; do
+for cmd in i3 kitty nvim rofi feh dunst flameshot zsh bat btop greenclip; do
   if ! command -v "$cmd" &>/dev/null; then
     echo "    MISSING: $cmd"
     missing=$((missing + 1))
