@@ -18,7 +18,7 @@ install_arch() {
     i3-wm rofi kitty neovim python-pywal feh i3status-rust dunst flameshot
     zsh zsh-autosuggestions zsh-syntax-highlighting firefox
     xorg-xrandr xorg-xset xorg-xrdb xdotool xclip xss-lock i3lock
-    redshift udiskie dex network-manager-applet
+    redshift udiskie dex networkmanager network-manager-applet
     pipewire-pulse pulsemixer playerctl
     bat btop mpv fastfetch picom
     ttf-jetbrains-mono-nerd
