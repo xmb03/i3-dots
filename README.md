@@ -10,6 +10,7 @@ Personal i3wm dotfiles with pywal-driven colorscheming.
 ## Features
 
 - **i3** — modular config split into `user/` (personal) and `system/` (distribution-agnostic)
+- **JetBrains Mono Regular** — единый системный шрифт (GTK, Qt, терминал, i3, rofi, zathura)
 - **pywal** — single wallpaper pick changes colors across the entire desktop (kitty, rofi, i3, zathura, nvim, zsh, gtk)
 - **rofi** — app launcher, clipboard manager (`greenclip`), window switcher
 - **Neovim** — LazyVim distribution with `neopywal.nvim` colorscheme
@@ -30,7 +31,8 @@ Personal i3wm dotfiles with pywal-driven colorscheming.
 | [`gtk-4.0/`](gtk-4.0/README.md) | GTK4 settings + dark theme |
 | [`fontconfig/`](fontconfig/README.md) | Font aliases → JetBrainsMono Nerd Font |
 | [`shell/`](shell/README.md) | Zsh, Bash, Xresources, xprofile |
-| [`redshift/`](redshift/README.md) | Blue light filter |
+| [`gammastep/`](gammastep/README.md) | Blue light filter (redshift replacement) |
+| [`qtengine/`](qtengine/README.md) | Qt theme engine config |
 | [`wal/`](wal/README.md) | pywal templates (zathura, etc.) |
 | [`xorg-conf.d/`](xorg-conf.d/30-touchpad.conf) | Xorg input config (touchpad) |
 | [`dconf/`](dconf/README.md) | GSettings dump |
@@ -65,12 +67,15 @@ Personal i3wm dotfiles with pywal-driven colorscheming.
 
 The entire desktop is themed by **pywal** — run the wallpaper picker (`$mod+a`) to select an image, and pywal generates a 16-color palette that applies to:
 
-- **kitty** — `include colors-kitty.conf`
-- **rofi** — `@import colors-rofi-dark.rasi`
-- **i3** — `set_from_resource` via Xresources
-- **zathura** — `include` generated colors from `colors-zathurarc`
-- **neovim** — neopywal.nvim
+- **kitty** — `JetBrains Mono` family, `include colors-kitty.conf`
+- **rofi** — `JetBrains Mono Regular`, `@import colors-rofi-dark.rasi`
+- **i3** — `JetBrains Mono Regular`, `set_from_resource` via Xresources
+- **zathura** — `JetBrains Mono Regular`, `include` generated colors from `colors-zathurarc`
+- **neovim** — JetBrainsMono Nerd Font Mono, neopywal.nvim
 - **zsh** — syntax highlighting colors from wal variables
+- **GTK3/GTK4** — `JetBrains Mono Regular 10`
+- **Qt** — `JetBrains Mono` via qtengine
+- **fuzzel** — `JetBrains Mono NF`
 
 ## Applications
 
@@ -87,7 +92,7 @@ The entire desktop is themed by **pywal** — run the wallpaper picker (`$mod+a`
 | flameshot | Screenshots |
 | greenclip | Clipboard manager |
 | feh | Wallpaper setter |
-| redshift | Blue light filter |
+| gammastep | Blue light filter (redshift fork) |
 | udiskie | USB auto-mount |
 | i3lock | Lock screen |
 
