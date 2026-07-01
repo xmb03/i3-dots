@@ -29,11 +29,15 @@ format = " $icon $brightness "
 block = "sound"
 format = " $icon { $volume|} "
 show_volume_when_muted = true
-driver = "auto"
+driver = "pipewire"
 
 [[block]]
 block = "music"
 format = " $icon {$combo.str(max_w:25) $prev $play $next |}"
+[[block.click]]
+button = "left"
+cmd = "~/.config/rofi/nowplaying/nowplaying.sh"
+update = false
 
 [[block]]
 block = "net"

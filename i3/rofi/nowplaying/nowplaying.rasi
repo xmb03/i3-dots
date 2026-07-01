@@ -1,0 +1,126 @@
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
+configuration {
+    show-icons: false;
+}
+
+* {
+    background-alt: @color0;
+    selected:       @color4;
+    active:         @color5;
+    urgent:         @color1;
+}
+
+window {
+    transparency:                "real";
+    location:                    south;
+    anchor:                      south;
+    fullscreen:                  false;
+    width:                       600px;
+    height:                      360px;
+    x-offset:                    30px;
+    y-offset:                    -25px;
+    enabled:                     true;
+    cursor:                      "default";
+    background-color:            @background;
+    border:                      2px;
+    border-color:                @selected;
+    padding:                     20px;
+}
+
+mainbox {
+    enabled:                     true;
+    spacing:                     20px;
+    background-color:            transparent;
+    orientation:                 vertical;
+    children:                    [ "top-message", "middle-wrapper", "listview" ];
+}
+
+top-message {
+    enabled:                     true;
+    padding:                     0px;
+    background-color:            @background;
+    children:                    [ "textbox-msg" ];
+    expand:                      false;
+}
+
+textbox-msg {
+    expand:                      true;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    horizontal-align:            0.5;
+    vertical-align:              0.5;
+    str:                         "Now Playing";
+    font:                        "JetBrainsMono Nerd Font 16";
+}
+
+middle-wrapper {
+    enabled:                     true;
+    orientation:                 horizontal;
+    spacing:                     20px;
+    background-color:            transparent;
+    expand:                      true;
+    children:                    [ "album-art", "custom-text-box" ];
+}
+
+album-art {
+    enabled:                     true;
+    width:                       170px;
+    height:                      170px;
+    background-color:            @active;
+    background-image:            url("~/.config/rofi/nowplaying/album_art.png", height);
+    expand:                      false;
+}
+
+custom-text-box {
+    enabled:                     true;
+    expand:                      true;
+    padding:                     20px;
+    background-color:            @color0;
+    children:                    [ "textbox-custom" ];
+}
+
+textbox-custom {
+    background-color:            transparent;
+    text-color:                  @foreground;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+    markup:                      true;
+    font:                        "JetBrainsMono Nerd Font 14";
+    str:                         "Loading...";
+}
+
+listview {
+    enabled:                     true;
+    columns:                     3;
+    lines:                       1;
+    dynamic:                     true;
+    reverse:                     false;
+    spacing:                     15px;
+    background-color:            transparent;
+    cursor:                      "default";
+    expand:                      false;
+}
+
+element {
+    enabled:                     true;
+    padding:                     12px;
+    cursor:                      pointer;
+    background-color:            @color0;
+    text-color:                  @foreground;
+    orientation:                 horizontal;
+}
+
+element selected {
+    background-color:            @selected;
+    text-color:                  @background;
+}
+
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+    font:                        "JetBrainsMono Nerd Font 14";
+}

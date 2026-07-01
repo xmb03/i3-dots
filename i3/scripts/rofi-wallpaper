@@ -1,22 +1,15 @@
 #!/bin/bash
 
-# wallpaper directory
 WALL_DIR="$HOME/Pictures/Wallpapers"
-# cache current wallpaper path
 CACHE_FILE="$HOME/.cache/current_wallpaper"
 
 apply_wallpaper() {
   local path="$1"
-
-  # generate colorscheme from image
   wal -i "$path"
   wal-telegram --wal
-
-  # set wallpaper
   feh --bg-fill "$path"
 }
 
-# --reset: restore last wallpaper from cache
 if [ "$1" == "--reset" ]; then
   if [ -f "$CACHE_FILE" ]; then
     SAVED_WALL=$(cat "$CACHE_FILE")
@@ -33,7 +26,6 @@ if [ ! -d "$WALL_DIR" ]; then
   exit 1
 fi
 
-# build rofi list with icons
 ROFI_DATA=""
 for pic in "$WALL_DIR"/*; do
   if [ -f "$pic" ]; then
@@ -42,26 +34,24 @@ for pic in "$WALL_DIR"/*; do
   fi
 done
 
-# launch rofi grid picker
 CHOICE=$(echo -en "$ROFI_DATA" | rofi -dmenu -i -p "Wallpaper" \
   -show-icons -theme-str '
-        listview { 
-            columns: 3; 
-            lines: 3; 
+        listview {
+            columns: 3;
+            lines: 3;
             cycle: true;
-        } 
-        element { 
-            orientation: vertical; 
+        }
+        element {
+            orientation: vertical;
             padding: 10px;
-        } 
-        element-icon { 
-            size: 8em; 
-        } 
-        element-text { 
-            horizontal-align: 0.5; 
+        }
+        element-icon {
+            size: 8em;
+        }
+        element-text {
+            horizontal-align: 0.5;
         }')
 
-# save and apply chosen wallpaper
 if [ -n "$CHOICE" ]; then
   FULL_PATH="$WALL_DIR/$CHOICE"
   echo "$FULL_PATH" >"$CACHE_FILE"

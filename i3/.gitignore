@@ -9,3 +9,11 @@ Thumbs.db
 
 # Cache / auto-generated (if symlinked into repo)
 .cache/
+
+# Rofi music control cache
+rofi/nowplaying/album_art.png
+rofi/nowplaying/song_title.cache
+
+# Python cache
+__pycache__/
+**/__pycache__/
