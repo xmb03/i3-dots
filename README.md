@@ -10,7 +10,7 @@ Personal i3wm dotfiles with pywal-driven colorscheming.
 ## Features
 
 - **i3** — modular config split into `user/` (personal) and `system/` (distribution-agnostic)
-- **JetBrains Mono Regular** — единый системный шрифт (GTK, Qt, терминал, i3, rofi, zathura)
+- **JetBrains Mono Regular** — single system-wide font across GTK, Qt, terminal, i3, rofi, zathura, neovim
 - **pywal** — single wallpaper pick changes colors across the entire desktop (kitty, rofi, i3, zathura, nvim, zsh, gtk)
 - **rofi** — app launcher, clipboard manager (`greenclip`), window switcher
 - **Neovim** — LazyVim distribution with `neopywal.nvim` colorscheme
