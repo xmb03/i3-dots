@@ -1,0 +1,22 @@
+{
+    "theme": {
+        "colorScheme": "",
+        "iconTheme": "Papirus-Dark",
+        "style": "Darkly",
+        "font": {
+            "family": "JetBrains Mono",
+            "size": 12,
+            "weight": 0
+        },
+        "fontFixed": {
+            "family": "JetBrains Mono",
+            "size": 12,
+            "weight": 0
+        }
+    },
+    "misc": {
+        "menusHaveIcons": true,
+        "singleClickActivate": false,
+        "shortcutsForContextMenus": true
+    }
+}

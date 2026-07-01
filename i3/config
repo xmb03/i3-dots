@@ -3,7 +3,7 @@
 set $mod Mod4
 
 # font for window titles + bar
-font pango:monospace 8
+font pango:JetBrains Mono Regular 10
 
 # ====== SETTINGS ======
 include ~/.config/i3/user/settings.conf
